@@ -17,5 +17,4 @@ Usage
 + Move whole folder to Joomla! dir: /modules
 + Go to Joomla! Administrator -> Extension -> Discover and press Discover button.
 + Choose your module and install it.
-+ abc
 
