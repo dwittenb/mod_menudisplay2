@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" client="site" method="upgrade">
+    <name>Modul Menüanzeige 2</name>
+    <creationDate>09.02.2025</creationDate>
+    <author>Didi</author>
+    <authorEmail></authorEmail>
+    <authorUrl>url</authorUrl>
+    <copyright>Copyright (C) 2025 Didi"</copyright>
+    <license>GPL-2.0-or-later</license>    
+    <namespace path="src">Didi\Module\MenuDisplay</namespace>
+    <version>1.0.0</version>
+    <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-02-09</description>
+    <files>
+        <folder module="mod_menudisplay2">services</folder>
+        <folder>services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+        <file>mod_menudisplay2.xml</file>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field 
+                    name="menutype" 
+                    type="menu" 
+                    label="Menü auswählen" 
+                    description="Wählen das Menü aus, das angezeigt werden soll." 
+                    required="true" 
+                />
+                <field
+                    name="article_limit"
+                    type="number"
+                    default="5"
+                    label="Anzahl der Artikel"
+                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. -1 zeigt alle Artikel an."
+                />
+                <field 
+                    name="title" 
+                    type="text" 
+                    default="" 
+                    label="Titeltext" 
+                    description="Titelüberschrift" 
+                />
+                <field 
+                    name="margin" 
+                    type="number" 
+                    default="20" 
+                    label="Margin" 
+                    description="Abstand in Pixel für Textinhalt links (Einrücken) und unten" 
+                />
+                <field 
+                    name="access" 
+                    type="number" 
+                    default="1" 
+                    label="Zugriffsebene" 
+                    description="Angezeigte Menüeinträge und Artikel der Zugriffsebene (1=Public, 2=Guest, 3=Registered, 4=Special, 5=Super User)" 
+                />                
+                <field 
+                    name="copyright" 
+                    type="text" 
+                    default="" 
+                    label="Copyright" 
+                    description="Copyright Information erscheint am Ende" 
+                />                
+            </fieldset>
+        </fields>
+    </config>
+</extension>
