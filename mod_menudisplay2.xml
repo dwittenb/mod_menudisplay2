@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="module" client="site" method="upgrade">
-    <name>Modul Menüanzeige 2</name>
+    <name>Modul Menueanzeige 2</name>
     <creationDate>09.02.2025</creationDate>
     <author>Didi</author>
     <authorEmail></authorEmail>
