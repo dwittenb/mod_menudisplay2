@@ -66,6 +66,6 @@
         </fields>
     </config>
     <updateservers>
-        <server type="extension" name="Menudisplay2 Module Updates">http://localhost/joom/updateserver/updates.xml</server>
+        <server type="extension" name="Menudisplay2 Module Updates">https://github.com/dwittenb/mod_menudisplay2/blob/main/updates.xml</server>
     </updateservers>
 </extension>
