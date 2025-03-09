@@ -65,4 +65,7 @@
             </fieldset>
         </fields>
     </config>
+    <updateservers>
+        <server type="extension" name="Menudisplay2 Module Updates">http://localhost/joom/updateserver/updates.xml</server>
+    </updateservers>
 </extension>
