@@ -57,7 +57,10 @@ if (!empty($items)) :
                             </a>
                         </h4>
                         <div style="margin: 0px 0px 20px <?php echo (int)$params->get('margin', '') + ($menuItem->level + 1) * (int)$params->get('margin', ''); ?>px">
-                            <?php echo $articleItem->introtext; ?>
+                            <?php
+                            echo $articleItem->introtext;
+                            echo $articleItem->fulltext;
+                            ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

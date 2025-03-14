@@ -50,12 +50,12 @@ class MenuDisplayHelper implements DatabaseAwareInterface
         // query all articles of category with id that are published with access level
         $db = $this->getDatabase();
         $query = $db->getQuery(true)
-            ->select($db->quoteName(['id', 'title', 'introtext', 'catid']))
+            ->select($db->quoteName(['id', 'title', 'introtext', 'fulltext', 'catid']))
             ->from($db->quoteName('#__content'))
             ->where($db->quoteName('catid') . ' = ' . (int) $categoryId)
             ->where($db->quoteName('state') . ' = 1') // Nur veröffentlichte Artikel
             ->where($db->quoteName('access') . ' = ' . (int)$access)
-            ->order('created DESC');
+            ->order('title ASC');
         if ($limit != -1)
             $query->setLimit($limit);
 
@@ -71,12 +71,12 @@ class MenuDisplayHelper implements DatabaseAwareInterface
 
         // query the article with id that are published with access level
         $query = $db->getQuery(true)
-            ->select($db->quoteName(['id', 'title', 'introtext', 'catid']))
+            ->select($db->quoteName(['id', 'title', 'introtext', 'fulltext', 'catid']))
             ->from($db->quoteName('#__content'))
             ->where($db->quoteName('id') . ' = ' . (int) $id)
             ->where($db->quoteName('state') . ' = 1') // Nur veröffentlichte Artikel
             ->where($db->quoteName('access') . ' = ' . (int)$access)
-            ->order('created DESC');
+            ->order('title ASC');
 
         $db->setQuery($query);
         return $db->loadObjectList();
