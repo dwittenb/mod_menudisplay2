@@ -9,7 +9,7 @@
     <license>GPL-2.0-or-later</license>    
     <namespace path="src">Didi\Module\MenuDisplay</namespace>
     <version>1.0.0</version>
-    <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-02-09</description>
+    <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-03-16</description>
     <files>
         <folder module="mod_menudisplay2">services</folder>
         <folder>services</folder>
@@ -19,49 +19,124 @@
     </files>
     <config>
         <fields name="params">
-            <fieldset name="basic">
+
+            <fieldset name="basic" label="Allgemeine Einstellungen">
+
                 <field 
-                    name="menutype" 
+                    name="showTitle" 
+                    type="radio" 
+                    label="Titeltext anzeigen" 
+					layout="joomla.form.field.radio.switcher"
+                    default="1" 
+                    filter="integer"
+                    >
+                    <option value = "0">JHIDE</option>
+                    <option value = "1">JSHOW</option>
+                </field>
+
+                <field 
+                    name="titleText" 
+                    type="text" 
+                    default="" 
+                    label="Titeltext" 
+                    description="Dieser Text wird als Titelüberschrift angezeigt" 
+                    showon="showTitle:1"
+                />
+
+                <field 
+                    name="showCopyright" 
+                    type="radio" 
+                    label="Copyrighttext anzeigen" 
+					layout="joomla.form.field.radio.switcher"
+                    default="1" 
+                    filter="integer"
+                    >
+                    <option value = "0">JHIDE</option>
+                    <option value = "1">JSHOW</option>
+                </field>
+
+                <field 
+                    name="copyrightText" 
+                    type="text" 
+                    default="" 
+                    label="Copyrighttext" 
+                    description="Copyright Information erscheint am Ende" 
+                    showon="showCopyright:1"
+                />    
+
+                <field 
+                    type="spacer" 
+                    hr="true" 
+                />
+                
+                <field 
+                    name="menuType" 
                     type="menu" 
                     label="Menü auswählen" 
                     description="Wählen das Menü aus, das angezeigt werden soll." 
                     required="true" 
                 />
+
                 <field
-                    name="article_limit"
+                    name="nestingDepth"
                     type="number"
-                    default="5"
-                    label="Anzahl der Artikel"
-                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. -1 zeigt alle Artikel an."
+                    default="1"
+                    min="1"
+                    max="99"
+                    step="1"
+                    label="Anzahl Untermenüebenen"
+                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. 0 zeigt alle Artikel an."
                 />
-                <field 
-                    name="title" 
-                    type="text" 
-                    default="" 
-                    label="Titeltext" 
-                    description="Titelüberschrift" 
+
+                <field
+                    name="articleLimit"
+                    type="number"
+                    default="0"
+                    min="0"
+                    step="1"
+                    label="Anzahl der Artikel je Menü"
+                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. 0 zeigt alle Artikel an."
                 />
-                <field 
-                    name="margin" 
-                    type="number" 
-                    default="20" 
-                    label="Margin" 
-                    description="Abstand in Pixel für Textinhalt links (Einrücken) und unten" 
+
+                <field
+                    name="countTags"
+                    type="number"
+                    default="0"
+                    min="0"
+                    step="1"
+                    label="Anzahl der Tags minimum"
+                    description="Minimale Anzahl an Tags"
                 />
+
                 <field 
                     name="access" 
-                    type="number" 
+                    type="accesslevel" 
                     default="1" 
                     label="Zugriffsebene" 
                     description="Angezeigte Menüeinträge und Artikel der Zugriffsebene (1=Public, 2=Guest, 3=Registered, 4=Special, 5=Super User)" 
-                />                
+                />     
+
                 <field 
-                    name="copyright" 
-                    type="text" 
-                    default="" 
-                    label="Copyright" 
-                    description="Copyright Information erscheint am Ende" 
-                />                
+                    type="spacer" 
+                    hr="true" 
+                />
+                
+                <field 
+                    name="marginTop" 
+                    type="number" 
+                    default="20" 
+                    label="Abstand Überschrift in Pixel" 
+                    description="Abstand in Pixel für Überschrift" 
+                />
+
+                <field 
+                    name="marginLeft" 
+                    type="number" 
+                    default="20" 
+                    label="Einrücken Artikel horizontal in Pixel" 
+                    description="Abstand in Pixel für Textinhalt links (Einrücken) und unten" 
+                />
+
             </fieldset>
         </fields>
     </config>

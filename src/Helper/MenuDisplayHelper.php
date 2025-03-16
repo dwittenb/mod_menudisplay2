@@ -24,6 +24,9 @@ class MenuDisplayHelper implements DatabaseAwareInterface
 {
     use DatabaseAwareTrait;
 
+    /**
+     * Databasequery to get menu-fields as array of Objects
+     */
     public function getMenuItems($menuType, $access)
     {
         if (empty($menuType)) return [];
@@ -32,9 +35,9 @@ class MenuDisplayHelper implements DatabaseAwareInterface
 
         // query all menus of type menuType that are published with access level
         $query = $db->getQuery(true)
-            ->select($db->quoteName(['id', 'title', 'link', 'level']))
+            ->select($db->quoteName(['id', 'title', 'link', 'parent_id', 'level', 'lft', 'rgt']))
             ->from($db->quoteName('#__menu'))
-            ->where($db->quoteName('menutype') . ' = ' . $db->quote($menuType))
+            ->where($db->quoteName('menuType') . ' = ' . $db->quote($menuType))
             ->where($db->quoteName('published') . ' = 1')
             ->where($db->quoteName('access') . ' = ' . (int)$access)
             ->order('lft ASC');
@@ -43,6 +46,9 @@ class MenuDisplayHelper implements DatabaseAwareInterface
         return $db->loadObjectList();
     }
 
+    /**
+     * Databasequery to get content-fields as array of Objects
+     */
     public function getArticles($categoryId, $limit, $access)
     {
         if (!$categoryId) return [];
@@ -56,13 +62,20 @@ class MenuDisplayHelper implements DatabaseAwareInterface
             ->where($db->quoteName('state') . ' = 1') // Nur veröffentlichte Artikel
             ->where($db->quoteName('access') . ' = ' . (int)$access)
             ->order('title ASC');
-        if ($limit != -1)
+        if ($limit > 0)
             $query->setLimit($limit);
 
+        // echo $query->__toString() . "<br>";
+        // echo "<pre>";
+        // print_r($db->loadObjectList());
+        // echo "</pre>";
         $db->setQuery($query);
         return $db->loadObjectList();
     }
 
+    /**
+     * Databasequery to get content-fields as array of Objects
+     */
     public function getArticle($id, $access)
     {
         if (!$id) return [];
@@ -82,10 +95,45 @@ class MenuDisplayHelper implements DatabaseAwareInterface
         return $db->loadObjectList();
     }
 
+    /**
+     * get Hierarchical Numbering of Menuitems
+     */
+    public function addHierarchyNumbering($data)
+    {
+        $numbering = [];    // speichert laufende Nummern für jedes Kapitel
+        $output = [];
+
+        foreach ($data as $datakey => $row) {
+            $level = $row->level;
+
+            // Erhöhe die Nummer für das aktuelle Kapitel
+            if (!isset($numbering[$level])) {
+                $numbering[$level] = 1;
+            } else {
+                $numbering[$level]++;
+            }
+
+            // Entferne höhere Level, falls ein neues Kapitel beginnt
+            foreach (array_keys($numbering) as $key) {
+                if ($key > $level) {
+                    unset($numbering[$key]);
+                }
+            }
+
+            // Erzeuge die hierarchische Nummer
+            $hierarchyNumber = implode('.', array_slice($numbering, 0, $level));
+
+            // Speichere die formatierte Ausgabe der Kapitelnummer als Object-value
+            $data[$datakey]->numbering = $hierarchyNumber;
+        }
+
+        return $data;
+    }
+
     public function getMenuArticles(Registry $params, SiteApplication $app)
     {
-        $menuType = (string) $params->get('menutype', '');
-        $articleLimit = (int) $params->get('article_limit', '');
+        $menuType = (string) $params->get('menuType', '');
+        $articleLimit = (int) $params->get('articleLimit', '');
         $access = $params->get('access', '');
 
         $allItems = [];
@@ -96,7 +144,9 @@ class MenuDisplayHelper implements DatabaseAwareInterface
         $sitemenu = $app->getMenu();
         $activeMenuitem = $sitemenu->getActive();
 
+        // get menuitems and add hierarchical Number
         $menuItems = self::getMenuItems($menuType, $access);
+        $menuItems = self::addHierarchyNumbering($menuItems);
 
         foreach ($menuItems as $menuKey => $menuItem) {
             //          	$content = Uri::getInstance()."/".($menuItem->link);
@@ -109,8 +159,8 @@ class MenuDisplayHelper implements DatabaseAwareInterface
             parse_str($parts['query'], $urlQuery);
 
             // ignore content with filter_tags
-            if (array_key_exists("filter_tag", $parts)) {
-                if (count($parts['filter_tag']) < 5) continue;
+            if (array_key_exists("filter_tag", $urlQuery)) {
+                if (count($urlQuery['filter_tag']) < $params->get('countTags', '')) continue;
             }
 
             switch ($urlQuery['view']) {
@@ -128,6 +178,10 @@ class MenuDisplayHelper implements DatabaseAwareInterface
                     break;
             }
         }
+        // echo "<pre>";
+        // print_r($allItems);
+        // echo "</pre>";
+
         return $allItems;
     }
 }
