@@ -4,11 +4,15 @@ This is an module for Joomla! CMS.
 This Joomla-module displays the article-items of the menu items with all submenus structured according to the selected menu. The Menuitems are numbered like Chapters in a Book.
 
 Options are:
-+ Select the Menu
-+ number of Articles displayd of each menu item
 + Add a Titletext
-+ Acess-Level
-+ Copyright Information
++ Add Copyright Information
++ Select the Menu
++ Select level of submenus
++ Select number of articles of each menuitem
++ If a cataegoryblo has tags, select minimum number of tags 
++ select Acess-Level of menus to be shown
++ Set margin-left in pixel of Articles
++ Select margin-top of each menuitem-headline
 
 Creator: Dietrich Wittenberg
 
