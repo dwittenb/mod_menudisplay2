@@ -47,7 +47,7 @@ if (!empty($items)) :
 
             <?php
             // begin show articles
-            $articleNr = 1;
+            // $articleNr = 1;
             foreach ($menuItem->articleItems as $articleItem) :
                 $href = Route::_('index.php?option=com_content&view=article&id=' . $articleItem->id . '&catid=' . $articleItem->catid);
             ?>
@@ -56,7 +56,7 @@ if (!empty($items)) :
                         <h4>
                             <a href="<?= $href; ?>">
                                 <?php
-                                echo $menuItem->numbering . "." . $articleNr;
+                                echo $menuItem->numbering . "." . $articleItem->numbering;
                                 echo " " . $articleItem->title;
                                 ?>
                             </a>
@@ -70,7 +70,7 @@ if (!empty($items)) :
                     </div>
                 </div>
             <?php
-                $articleNr++;
+            // $articleNr++;
             endforeach;
             // end show articles
             ?>

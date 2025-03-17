@@ -49,7 +49,7 @@ class MenuDisplayHelper implements DatabaseAwareInterface
     /**
      * Databasequery to get content-fields as array of Objects
      */
-    public function getArticles($categoryId, $limit, $access)
+    public function getArticles($categoryId, $limit, $access, $order)
     {
         if (!$categoryId) return [];
 
@@ -60,8 +60,11 @@ class MenuDisplayHelper implements DatabaseAwareInterface
             ->from($db->quoteName('#__content'))
             ->where($db->quoteName('catid') . ' = ' . (int) $categoryId)
             ->where($db->quoteName('state') . ' = 1') // Nur veröffentlichte Artikel
-            ->where($db->quoteName('access') . ' = ' . (int)$access)
-            ->order('title ASC');
+            ->where($db->quoteName('access') . ' = ' . (int)$access);
+
+        if ($order != "")
+            $query->order($order);
+
         if ($limit > 0)
             $query->setLimit($limit);
 
@@ -98,7 +101,7 @@ class MenuDisplayHelper implements DatabaseAwareInterface
     /**
      * get Hierarchical Numbering of Menuitems
      */
-    public function addHierarchyNumbering($data)
+    public function addMenuNumbering($data)
     {
         $numbering = [];    // speichert laufende Nummern für jedes Kapitel
         $output = [];
@@ -130,11 +133,47 @@ class MenuDisplayHelper implements DatabaseAwareInterface
         return $data;
     }
 
+    /**
+     * get Hierarchical Numbering of ArticleItems
+     */
+    public function addArticleNumbering($articleItems)
+    {
+        $articleNr = 1;
+        foreach ($articleItems as $key => $articleItem) {
+            $articleItems[$key]->numbering = $articleNr++;
+        }
+        return $articleItems;
+    }
+
     public function getMenuArticles(Registry $params, SiteApplication $app)
     {
         $menuType = (string) $params->get('menuType', '');
         $articleLimit = (int) $params->get('articleLimit', '');
         $access = $params->get('access', '');
+        $sortBy = $params->get('sortBy', '');
+        switch ($sortBy) {
+            case 'none':
+                $order = '';
+                break;
+            case 'date':
+                $order = 'created ASC';
+                break;
+            case 'rdate':
+                $order = 'created DESC';
+                break;
+            case 'alpha':
+                $order = 'title ASC';
+                break;
+            case 'ralpha':
+                $order = 'title DESC';
+                break;
+            case 'order':
+                $order = 'id ASC';
+                break;
+            case 'rorder':
+                $order = 'id DESC';
+                break;
+        }
 
         $allItems = [];
         if (empty($menuType))
@@ -146,7 +185,7 @@ class MenuDisplayHelper implements DatabaseAwareInterface
 
         // get menuitems and add hierarchical Number
         $menuItems = self::getMenuItems($menuType, $access);
-        $menuItems = self::addHierarchyNumbering($menuItems);
+        $menuItems = self::addMenuNumbering($menuItems);
 
         foreach ($menuItems as $menuKey => $menuItem) {
             //          	$content = Uri::getInstance()."/".($menuItem->link);
@@ -167,12 +206,16 @@ class MenuDisplayHelper implements DatabaseAwareInterface
                 case "category":
                     // get all articles with the category
                     $allItems[$menuKey] = $menuItem;
-                    $allItems[$menuKey]->articleItems = self::getArticles($urlQuery['id'], $articleLimit, $access);
+                    $articleItems = self::getArticles($urlQuery['id'], $articleLimit, $access, $order);
+                    $articleItems = self::addArticleNumbering($articleItems);
+                    $allItems[$menuKey]->articleItems = $articleItems;
                     break;
                 case "article":
                     // get article
                     $allItems[$menuKey] = $menuItem;
-                    $allItems[$menuKey]->articleItems = self::getArticle($urlQuery['id'], $access);
+                    $articleItems = self::getArticle($urlQuery['id'], $access);
+                    $articleItems = self::addArticleNumbering($articleItems);
+                    $allItems[$menuKey]->articleItems = $articleItems;
                     break;
                 default:
                     break;

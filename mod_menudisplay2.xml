@@ -116,6 +116,21 @@
                     description="Angezeigte Menüeinträge und Artikel der Zugriffsebene (1=Public, 2=Guest, 3=Registered, 4=Special, 5=Super User)" 
                 />     
 
+                <field
+                    name="sortBy"
+                    type="list"
+                    label="Artikel sortieren"
+                    description="Sortiert Artikel"
+                    >
+                    <option value="none">Keine</option>
+                    <option value="rdate">Neueste zuerst</option>
+                    <option value="date">Älteste zuerst</option>
+                    <option value="alpha">Titel von A bis Z</option>
+                    <option value="ralpha">Titel von Z Bis A</option>
+                    <option value="order">Beitragsreihenfolge</option>
+                    <option value="rorder">Umgekehrte Beitragsreihenfolge</option>
+                </field>
+
                 <field 
                     type="spacer" 
                     hr="true" 
