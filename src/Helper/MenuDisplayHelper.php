@@ -147,41 +147,27 @@ class MenuDisplayHelper implements DatabaseAwareInterface
 
     public function getMenuArticles(Registry $params, SiteApplication $app)
     {
+        $allItems = [];
         $menuType = (string) $params->get('menuType', '');
         $articleLimit = (int) $params->get('articleLimit', '');
         $access = $params->get('access', '');
         $sortBy = $params->get('sortBy', '');
-        switch ($sortBy) {
-            case 'none':
-                $order = '';
-                break;
-            case 'date':
-                $order = 'created ASC';
-                break;
-            case 'rdate':
-                $order = 'created DESC';
-                break;
-            case 'alpha':
-                $order = 'title ASC';
-                break;
-            case 'ralpha':
-                $order = 'title DESC';
-                break;
-            case 'alias':
-                $order = 'alias ASC';
-                break;
-            case 'ralias':
-                $order = 'alias DESC';
-                break;
-            case 'order':
-                $order = 'id ASC';
-                break;
-            case 'rorder':
-                $order = 'id DESC';
-                break;
-        }
 
-        $allItems = [];
+        // create order for Articles
+        $select = array(
+            'none' => '',
+            'date' => 'created ASC',
+            'rdate' => 'created DESC',
+            'alpha' => 'title ASC',
+            'ralpha' => 'title DESC',
+            'alias' => 'alias ASC',
+            'ralias' => 'alias DESC',
+            'order' => 'id ASC',
+            'rorder' => 'id DESC'
+        );
+        $order = (key_exists($sortBy, $select)) ? $select[$sortBy] : "";
+
+        // return empty array if no menu is selected
         if (empty($menuType))
             return [];
 
