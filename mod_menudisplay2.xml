@@ -112,8 +112,8 @@
                     name="access" 
                     type="accesslevel" 
                     default="1" 
-                    label="Zugriffsebene" 
-                    description="Angezeigte Menüeinträge und Artikel der Zugriffsebene (1=Public, 2=Guest, 3=Registered, 4=Special, 5=Super User)" 
+                    label="Zugriffsebene der Menüanzeige" 
+                    description="Angezeigte Menüeinträge und Artikel ab der Zugriffsebene" 
                 />     
 
                 <field
@@ -127,6 +127,8 @@
                     <option value="date">Älteste zuerst</option>
                     <option value="alpha">Titel von A bis Z</option>
                     <option value="ralpha">Titel von Z Bis A</option>
+                    <option value="alias">Alias von A bis Z</option>
+                    <option value="ralias">Alias von Z Bis A</option>
                     <option value="order">Beitragsreihenfolge</option>
                     <option value="rorder">Umgekehrte Beitragsreihenfolge</option>
                 </field>
@@ -140,16 +142,16 @@
                     name="marginTop" 
                     type="number" 
                     default="20" 
-                    label="Abstand Überschrift in Pixel" 
-                    description="Abstand in Pixel für Überschrift" 
+                    label="Vertikaler Abstand Überschrift [px]" 
+                    description="Vertikaler Abstand Menü-Überschrift [px]" 
                 />
 
                 <field 
                     name="marginLeft" 
                     type="number" 
                     default="20" 
-                    label="Einrücken Artikel horizontal in Pixel" 
-                    description="Abstand in Pixel für Textinhalt links (Einrücken) und unten" 
+                    label="Horizontales Einrücken der Textinhalt" 
+                    description="Horizontales Einrücken der Textinhalt" 
                 />
 
             </fieldset>
