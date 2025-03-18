@@ -167,6 +167,12 @@ class MenuDisplayHelper implements DatabaseAwareInterface
             case 'ralpha':
                 $order = 'title DESC';
                 break;
+            case 'alias':
+                $order = 'alias ASC';
+                break;
+            case 'ralias':
+                $order = 'alias DESC';
+                break;
             case 'order':
                 $order = 'id ASC';
                 break;
