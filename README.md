@@ -9,7 +9,7 @@ Options are:
 + Select the Menu
 + Select level of submenus
 + Select number of articles of each menuitem
-+ If a cataegoryblo has tags, select minimum number of tags 
++ If a cataegory has tags, select minimum number of tags 
 + select Acess-Level of menus to be shown
 + Set margin-left in pixel of Articles
 + Select margin-top of each menuitem-headline
