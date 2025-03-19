@@ -158,6 +158,6 @@
         </fields>
     </config>
     <updateservers>
-        <server type="extension" name="Menudisplay2 Module Updates">https://github.com/dwittenb/mod_menudisplay2/blob/main/updates.xml</server>
+        <server type="extension" name="Menudisplay2 Module Updates">https://raw.githubusercontent.com/dwittenb/mod_menudisplay2/refs/heads/main/updates.xml</server>
     </updateservers>
 </extension>
