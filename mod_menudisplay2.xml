@@ -8,7 +8,7 @@
     <copyright>Copyright (C) 2025 Didi"</copyright>
     <license>GPL-2.0-or-later</license>    
     <namespace path="src">Didi\Module\MenuDisplay</namespace>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-03-16</description>
     <files>
         <folder module="mod_menudisplay2">services</folder>
