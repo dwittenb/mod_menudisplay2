@@ -8,7 +8,7 @@
     <copyright>Copyright (C) 2025 Didi"</copyright>
     <license>GPL-2.0-or-later</license>    
     <namespace path="src">Didi\Module\MenuDisplay</namespace>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-03-16</description>
     <files>
         <folder module="mod_menudisplay2">services</folder>
@@ -80,12 +80,11 @@
                 <field
                     name="nestingDepth"
                     type="number"
-                    default="1"
-                    min="1"
-                    max="99"
+                    default="0"
+                    min="0"
                     step="1"
                     label="Anzahl Untermenüebenen"
-                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. 0 zeigt alle Artikel an."
+                    description="Maximale Anzahl an Untermenüebenen. 0 zeigt alle Menüebenen an."
                 />
 
                 <field
@@ -94,8 +93,8 @@
                     default="0"
                     min="0"
                     step="1"
-                    label="Anzahl der Artikel je Menü"
-                    description="Maximale Anzahl der angezeigten Artikel in einer Kategorie. 0 zeigt alle Artikel an."
+                    label="Anzahl der Beiträge je Menü"
+                    description="Maximale Anzahl der angezeigten Beiträge in einem Kategorieblog. 0 zeigt alle Beiträge an."
                 />
 
                 <field
@@ -104,8 +103,8 @@
                     default="0"
                     min="0"
                     step="1"
-                    label="Anzahl der Tags minimum"
-                    description="Minimale Anzahl an Tags"
+                    label="Mindestanzahl an Schlagwörtern"
+                    description="Erforderliche Mindestanzahl an Schlagwörtern in einem Kategorieblog, damit der Menüpunkt angezeigt wird. Kategorieblogs ohne Schlagwörter werden immer angezeigt."
                 />
 
                 <field 
@@ -113,14 +112,14 @@
                     type="accesslevel" 
                     default="1" 
                     label="Zugriffsebene der Menüanzeige" 
-                    description="Angezeigte Menüeinträge und Artikel ab der Zugriffsebene" 
+                    description="Zeigt alle Menüeinträge und Beiträge der Zugriffsebene und darunter an" 
                 />     
 
                 <field
                     name="sortBy"
                     type="list"
-                    label="Artikel sortieren"
-                    description="Sortiert Artikel"
+                    label="Beiträge sortieren"
+                    description="Sortiert die Beiträge"
                     >
                     <option value="none">Keine</option>
                     <option value="rdate">Neueste zuerst</option>
@@ -143,7 +142,7 @@
                     type="number" 
                     default="20" 
                     label="Vertikaler Abstand Überschrift [px]" 
-                    description="Vertikaler Abstand Menü-Überschrift [px]" 
+                    description="Vertikaler Abstand der Überschriften [px]" 
                 />
 
                 <field 
@@ -151,7 +150,7 @@
                     type="number" 
                     default="20" 
                     label="Horizontales Einrücken der Textinhalt" 
-                    description="Horizontales Einrücken der Textinhalt" 
+                    description="Horizontales Einrücken der Textinhalte der Beiträge je Ebene [px]" 
                 />
 
             </fieldset>

@@ -25,12 +25,14 @@ if (!empty($items)) :
         <!-- Seiteninhalte -->
         <?php
         // prepare nesting Depth
-        $nestingDepth = $params->get('nestingDepth', '1');
+        $nestingDepth = $params->get('nestingDepth', '0');
 
         foreach ($items as $menuItem) :
 
             // dont show menuitems greater than depth
-            if ($menuItem->level > $nestingDepth) break;
+            if ($nestingDepth != 0) {
+                if ($menuItem->level > $nestingDepth) break;
+            }
         ?>
             <!-- show menuitem as Headline with link -->
             <div style="margin: <?php echo $params->get('marginTop', ''); ?>px 0px 0px 0px ">
