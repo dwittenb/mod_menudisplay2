@@ -10,6 +10,9 @@
         <downloads>
             <downloadurl type="full" format="zip">https://github.com/dwittenb/mod_menudisplay2/archive/refs/heads/main.zip</downloadurl>
         </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
         <maintainer>Didi</maintainer>
         <maintainerurl>https://github.com/dwittenb/mod_menudisplay2</maintainerurl>
         <infourl>https://github.com/dwittenb/mod_menudisplay2/blob/main/README.md</infourl>
