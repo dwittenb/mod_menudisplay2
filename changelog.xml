@@ -8,13 +8,13 @@
             <item></item>
         </security>
         <fix>
-            <item>Fixed minor bugs and issues</item>
+            <item>Kleiner Fehler und Probleme behoben</item>
         </fix>
         <language>
             <item></item>
         </language>
         <addition>
-            <item>Neue Einstellungen im Backend</item>
+            <item>Neue Einstellungen im Backend ergänzt</item>
         </addition>
         <change>
             <item><![CDATA[<h2>Anpassung an neue Einstellungen</h2>]]></item>
