@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changelogs>
+<changelog>
+    <header>
+        <extension>mod_menudisplay2</extension>
+        <type>module</type>
+        <version>1.0.0</version>
+        <description>Changelog for mod_menudisplay2</description>
+    </header>
+    <releases>
+        <release version="1.0.0" date="2023-10-01">
+            <description>Initial release</description>
+            <items>
+                <item>Added basic functionality for menu display</item>
+                <item>Implemented initial layout and styling</item>
+                <item>Fixed minor bugs and issues</item>
+            </items>
+        </release>
+    </releases>
+    </changelog>
+</changelogs>
