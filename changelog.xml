@@ -4,7 +4,7 @@
         <header>
             <extension>mod_menudisplay2</extension>
             <type>module</type>
-            <version>1.0.0</version>
+            <version>1.0.5</version>
             <description>Changelog for mod_menudisplay2</description>
         </header>
         <releases>
