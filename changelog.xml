@@ -17,7 +17,7 @@
             <item>Neue Einstellungen im Backend</item>
         </addition>
         <change>
-            <item>Anpassung an neue Einstellungen</item>
+            <item>![CDATA[<h2>Anpassung an neue Einstellungen</h2>]]</item>
         </change>
         <remove>
             <item>Nichts entfernt</item>
