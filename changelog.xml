@@ -5,7 +5,7 @@
         <version>1.0.5</version>
         <description>Changelog for mod_menudisplay2</description>
         <security>
-            <item></item>
+            <item>stable</item>
         </security>
         <fix>
             <item>Kleiner Fehler und Probleme behoben</item>
