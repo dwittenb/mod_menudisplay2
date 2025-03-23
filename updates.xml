@@ -4,7 +4,7 @@
         <description>Dieses Modul zeigt die Artikel der Menüpunkte gegliedert nach dem ausgewählten Menü an. (c) Dietrich Wittenberg 2025-02-09</description>
         <element>mod_menudisplay2</element>
         <type>module</type>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
         <changelogurl>https://github.com/dwittenb/mod_menudisplay2/blob/main/changelog.xml</changelogurl>
         <client>site</client>
         <downloads>
