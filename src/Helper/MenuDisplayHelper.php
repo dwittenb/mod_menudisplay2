@@ -213,9 +213,6 @@ class MenuDisplayHelper implements DatabaseAwareInterface
                     break;
             }
         }
-        // echo "<pre>";
-        // print_r($allItems);
-        // echo "</pre>";
 
         return $allItems;
     }
